@@ -1,6 +1,6 @@
 'use client'
 
-import { useVisualizerStore } from '@/lib/store'
+import { useVisualizerStore } from '../lib/store'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function CallStack() {
@@ -10,7 +10,7 @@ export function CallStack() {
   const callStack = currentStep?.callStack || []
 
   return (
-    <div className="card flex flex-col gap-3 h-full">
+    <div className="flex flex-col gap-3 h-full">
       <h3 className="font-semibold text-sm text-blue-400">Call Stack</h3>
 
       <div className="flex-1 flex flex-col gap-2 overflow-auto">

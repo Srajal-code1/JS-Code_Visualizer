@@ -1,6 +1,6 @@
 'use client'
 
-import { useVisualizerStore } from '@/lib/store'
+import { useVisualizerStore } from '../lib/store'
 import { motion } from 'framer-motion'
 
 export function CurrentCodeLine() {
@@ -10,7 +10,7 @@ export function CurrentCodeLine() {
   const lines = code.split('\n')
 
   return (
-    <div className="card flex flex-col gap-3 h-full">
+    <div className="flex flex-col gap-3 h-full">
       <h3 className="font-semibold text-sm text-yellow-400">Current Execution</h3>
 
       <div className="flex-1 flex flex-col gap-2 overflow-auto">
@@ -22,7 +22,7 @@ export function CurrentCodeLine() {
                 key={currentStep.stepId}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="code-block bg-yellow-500/10 border border-yellow-500/30 text-yellow-100 font-mono text-sm break-words"
+                className="bg-yellow-500/10 border border-yellow-500/30 text-yellow-100 font-mono text-sm break-words p-2 rounded"
               >
                 {currentStep.code}
               </motion.div>

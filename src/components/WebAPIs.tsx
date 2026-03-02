@@ -1,6 +1,6 @@
 'use client'
 
-import { useVisualizerStore } from '@/lib/store'
+import { useVisualizerStore } from '../lib/store'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Radio } from 'lucide-react'
 
@@ -11,7 +11,7 @@ export function WebAPIs() {
   const webApis = currentStep?.webApis || []
 
   return (
-    <div className="card flex flex-col gap-3 h-full">
+    <div className="flex flex-col gap-3 h-full">
       <h3 className="font-semibold text-sm text-green-400 flex items-center gap-2">
         <Radio size={16} />
         Web APIs

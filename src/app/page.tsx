@@ -1,20 +1,20 @@
 'use client'
 
-import { CodeEditor } from '@/components/CodeEditor'
-import { CallStack } from '@/components/CallStack'
-import { TaskQueue } from '@/components/TaskQueue'
-import { MicroTaskQueue } from '@/components/MicroTaskQueue'
-import { WebAPIs } from '@/components/WebAPIs'
-import { Variables } from '@/components/Variables'
-import { EventLoop } from '@/components/EventLoop'
-import { CurrentCodeLine } from '@/components/CurrentCodeLine'
-import { Controls } from '@/components/Controls'
-import { ErrorDisplay } from '@/components/ErrorDisplay'
+import { CodeEditor } from '../components/CodeEditor'
+import { CallStack } from '../components/CallStack'
+import { TaskQueue } from '../components/TaskQueue'
+import { MicroTaskQueue } from '../components/MicroTaskQueue'
+import { WebAPIs } from '../components/WebAPIs'
+import { Variables } from '../components/Variables'
+import { EventLoop } from '../components/EventLoop'
+import { CurrentCodeLine } from '../components/CurrentCodeLine'
+import { Controls } from '../components/Controls'
+import { ErrorDisplay } from '../components/ErrorDisplay'
 // Note: showing all panels at once per user request
 
 export default function Home() {
   return (
-    <div className="h-screen flex flex-col bg-dark-950 text-white p-4">
+    <div className="min-h-screen flex flex-col bg-dark-950 text-white p-4">
       <ErrorDisplay />
 
       {/* Header */}
@@ -28,13 +28,13 @@ export default function Home() {
       </div>
 
       {/* Content container: show all panels simultaneously */}
-      <div className="flex-1 flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <div className="grid grid-cols-12 gap-4 h-full">
           {/* Editor */}
-          <div className="col-span-12 lg:col-span-4 flex flex-col min-h-0">
-            <div className="flex-1 card overflow-auto">
+          <div className="col-span-12 lg:col-span-4 flex flex-col">
+            <div className="flex-1 card">
               <h3 className="text-sm font-semibold mb-2">Editor</h3>
-              <div className="h-[calc(100%-1.25rem)]">
+              <div>
                 <CodeEditor />
               </div>
             </div>
@@ -44,21 +44,21 @@ export default function Home() {
           </div>
 
           {/* Main: current line + event loop */}
-          <div className="col-span-12 lg:col-span-5 flex flex-col gap-4 min-h-0">
-            <div className="flex-1 card overflow-auto">
+          <div className="col-span-12 lg:col-span-5 flex flex-col gap-4">
+            <div className="flex-1 card">
               <CurrentCodeLine />
             </div>
-            <div className="flex-1 card overflow-auto">
+            <div className="flex-1 card">
               <EventLoop />
             </div>
           </div>
 
           {/* Right: call stack + variables */}
-          <div className="col-span-12 lg:col-span-3 flex flex-col gap-4 min-h-0">
-            <div className="flex-1 card overflow-auto">
+          <div className="col-span-12 lg:col-span-3 flex flex-col gap-4">
+            <div className="flex-1 card">
               <CallStack />
             </div>
-            <div className="flex-1 card overflow-auto">
+            <div className="flex-1 card">
               <Variables />
             </div>
           </div>
@@ -66,13 +66,13 @@ export default function Home() {
 
         {/* Queues row */}
         <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-12 md:col-span-4 card overflow-auto">
+          <div className="col-span-12 md:col-span-4 card">
             <TaskQueue />
           </div>
-          <div className="col-span-12 md:col-span-4 card overflow-auto">
+          <div className="col-span-12 md:col-span-4 card">
             <MicroTaskQueue />
           </div>
-          <div className="col-span-12 md:col-span-4 card overflow-auto">
+          <div className="col-span-12 md:col-span-4 card">
             <WebAPIs />
           </div>
         </div>

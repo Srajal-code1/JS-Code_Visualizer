@@ -1,6 +1,6 @@
 'use client'
 
-import { useVisualizerStore } from '@/lib/store'
+import { useVisualizerStore } from '../lib/store'
 import { useEffect } from 'react'
 import { Play, Pause, SkipBack, SkipForward, RotateCcw } from 'lucide-react'
 
@@ -26,36 +26,36 @@ export function Controls() {
   const hasSteps = steps.length > 0
 
   return (
-    <div className="card flex flex-col gap-4">
-      <h3 className="font-semibold text-sm">Playback Controls</h3>
+    <div className="flex flex-col gap-4 p-3 bg-dark-800 border border-dark-700 rounded">
+      <h3 className="font-semibold text-sm">Playback</h3>
 
       {/* Main Controls */}
       <div className="flex gap-2">
         <button
           onClick={() => prevStep()}
           disabled={!hasSteps || currentStepIndex === 0}
-          className="btn-secondary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed flex-1"
+          className="btn-secondary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed flex-1 text-xs py-1"
         >
-          <SkipBack size={16} />
+          <SkipBack size={14} />
           Prev
         </button>
 
         <button
           onClick={() => setIsPlaying(!isPlaying)}
           disabled={!hasSteps}
-          className="btn-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed flex-1"
+          className="btn-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed flex-1 text-xs py-1"
         >
-          {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+          {isPlaying ? <Pause size={14} /> : <Play size={14} />}
           {isPlaying ? 'Pause' : 'Play'}
         </button>
 
         <button
           onClick={() => nextStep()}
           disabled={!hasSteps || currentStepIndex === steps.length - 1}
-          className="btn-secondary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed flex-1"
+          className="btn-secondary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed flex-1 text-xs py-1"
         >
           Next
-          <SkipForward size={16} />
+          <SkipForward size={14} />
         </button>
       </div>
 
@@ -96,9 +96,9 @@ export function Controls() {
       {/* Reset Button */}
       <button
         onClick={reset}
-        className="btn-secondary flex items-center gap-2 w-full justify-center"
+        className="btn-secondary flex items-center gap-2 w-full justify-center text-xs py-1"
       >
-        <RotateCcw size={16} />
+        <RotateCcw size={14} />
         Reset All
       </button>
     </div>

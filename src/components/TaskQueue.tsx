@@ -1,6 +1,6 @@
 'use client'
 
-import { useVisualizerStore } from '@/lib/store'
+import { useVisualizerStore } from '../lib/store'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Clock } from 'lucide-react'
 
@@ -11,7 +11,7 @@ export function TaskQueue() {
   const taskQueue = currentStep?.taskQueue || []
 
   return (
-    <div className="card flex flex-col gap-3 h-full">
+    <div className="flex flex-col gap-3 h-full">
       <h3 className="font-semibold text-sm text-orange-400 flex items-center gap-2">
         <Clock size={16} />
         Task Queue (Macrotasks)

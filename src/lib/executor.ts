@@ -10,11 +10,9 @@ export class JavaScriptExecutor {
   private webApis: WebAPI[] = []
   private globalVariables: Record<string, unknown> = {}
   private stepCounter: number = 0
-  private eventLoop: EventLoopSimulator
 
   constructor(code: string) {
     this.code = code
-    this.eventLoop = new EventLoopSimulator()
   }
 
   async execute(): Promise<ExecutionStep[]> {
@@ -28,14 +26,11 @@ export class JavaScriptExecutor {
   }
 
   private parseAndExecute(): void {
-    // Split code into lines
     const lines = this.code.split('\n')
 
-    // Track setTimeout calls
     const timeoutCallbacks: { delay: number; callback: string; id: string }[] = []
     const promiseCallbacks: { callback: string; id: string }[] = []
 
-    // Simple line-by-line execution tracking
     lines.forEach((line, index) => {
       const trimmedLine = line.trim()
       if (!trimmedLine || trimmedLine.startsWith('//')) return
@@ -103,7 +98,6 @@ export class JavaScriptExecutor {
           this.callStack.push(frame)
           this.updateStep()
 
-          // Pop after function execution (simplified)
           setTimeout(() => {
             this.callStack.pop()
             this.updateStep()
@@ -112,7 +106,6 @@ export class JavaScriptExecutor {
       }
     })
 
-    // Simulate event loop processing
     this.simulateEventLoop()
   }
 
@@ -147,7 +140,6 @@ export class JavaScriptExecutor {
   }
 
   private simulateEventLoop(): void {
-    // Process micro tasks first (Promises, queueMicrotask)
     while (this.microTaskQueue.length > 0) {
       const task = this.microTaskQueue.shift()
       if (task) {
@@ -170,7 +162,6 @@ export class JavaScriptExecutor {
       }
     }
 
-    // Then process macro tasks (setTimeout, setInterval)
     while (this.taskQueue.length > 0) {
       const task = this.taskQueue.shift()
       if (task) {
@@ -197,38 +188,24 @@ export class JavaScriptExecutor {
   private evaluateExpression(expr: string): unknown {
     const expr_trimmed = expr.trim()
 
-    // Simple number evaluation
     if (/^\d+(\.\d+)?$/.test(expr_trimmed)) {
       return parseFloat(expr_trimmed)
     }
 
-    // Simple string evaluation
     if ((expr_trimmed.startsWith('"') && expr_trimmed.endsWith('"')) ||
         (expr_trimmed.startsWith("'") && expr_trimmed.endsWith("'"))) {
       return expr_trimmed.slice(1, -1)
     }
 
-    // Array literal
     if (expr_trimmed.startsWith('[') && expr_trimmed.endsWith(']')) {
       return []
     }
 
-    // Object literal
     if (expr_trimmed.startsWith('{') && expr_trimmed.endsWith('}')) {
       return {}
     }
 
     return undefined
-  }
-}
-
-class EventLoopSimulator {
-  private callStack: ExecutionFrame[] = []
-  private taskQueue: ExecutionEvent[] = []
-  private microTaskQueue: ExecutionEvent[] = []
-
-  processEventLoop(steps: ExecutionStep[]): ExecutionStep[] {
-    return steps
   }
 }
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useVisualizerStore } from '@/lib/store'
+import { useVisualizerStore } from '../lib/store'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function Variables() {
@@ -12,7 +12,7 @@ export function Variables() {
   const entries = Object.entries(variables)
 
   return (
-    <div className="card flex flex-col gap-3 h-full">
+    <div className="flex flex-col gap-3 h-full">
       <h3 className="font-semibold text-sm text-cyan-400">Variables</h3>
 
       <div className="flex-1 flex flex-col gap-2 overflow-auto font-mono text-xs">

@@ -1,7 +1,7 @@
 'use client'
 
-import { useVisualizerStore } from '@/lib/store'
-import { executeCode } from '@/lib/executor'
+import { useVisualizerStore } from '../lib/store'
+import { executeCode } from '../lib/executor'
 import { useState } from 'react'
 import { Play, RotateCcw } from 'lucide-react'
 import CodeMirror from '@uiw/react-codemirror'
@@ -39,26 +39,26 @@ export function CodeEditor() {
   }
 
   return (
-    <div className="flex flex-col h-full gap-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold">Code Editor</h2>
-        <div className="flex gap-2">
+    <div className="flex flex-col h-full gap-3">
+      <div className="flex items-center justify-between gap-2">
+        <h2 className="text-sm font-semibold">Code Editor</h2>
+        <div className="flex gap-1">
           <button
             onClick={handleRun}
             disabled={isLoading || !code.trim()}
-            className="btn-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="btn-primary flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed text-xs py-1 px-2"
           >
-            <Play size={16} />
+            <Play size={14} />
             Run
           </button>
-          <button onClick={handleReset} className="btn-secondary flex items-center gap-2">
-            <RotateCcw size={16} />
+          <button onClick={handleReset} className="btn-secondary flex items-center gap-1 text-xs py-1 px-2">
+            <RotateCcw size={14} />
             Reset
           </button>
         </div>
       </div>
 
-      <div className="flex-1 relative">
+      <div className="flex-1 relative border border-dark-700 rounded">
         <CodeMirror
           value={code}
           height="100%"
@@ -72,12 +72,12 @@ export function CodeEditor() {
             highlightActiveLine: true,
             defaultKeymap: true,
           }}
-          className="code-block"
+          className="text-xs"
         />
       </div>
 
       {steps.length > 0 && (
-        <div className="text-sm text-gray-400">
+        <div className="text-xs text-gray-400">
           Steps: {currentStepIndex + 1} / {steps.length}
         </div>
       )}
